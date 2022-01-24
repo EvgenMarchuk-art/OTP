@@ -99,8 +99,8 @@ export function InputOtpScreen({navigation}) {
                   ]}>
                   <Text
                     style={InputOtpStyle.cellText}
-                    onPress={() => textInput.focus()}>
-                    {internalVal?.length > 0
+                    onPress={() => textInput}>
+                    {internalVal?.length >= 0
                       ? internalVal[index]
                       : ''}
                   </Text>
@@ -133,5 +133,3 @@ export function InputOtpScreen({navigation}) {
     </View>
   );
 }
-
-//rer

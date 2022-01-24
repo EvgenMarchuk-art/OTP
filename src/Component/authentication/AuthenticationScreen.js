@@ -19,14 +19,15 @@ export function AuthenticationScreen({navigation}) {
   let textInput = useRef(null);
   // const defaultCodeCountry = '+38';
   // const defaultMaskCountry = '99 999 9999';
-  const [phoneNumber, setPhoneNumber] = useState();
+
   const [focusInput, setfocusInput] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [dataCountries, setDataCountries] = useState(Countries);
 
-  const [codeCountry, setCodeCountry] = useState('+38');
+  const [codeCountry, setCodeCountry] = useState('+380');
   const [placeholder, setplaceholder] = useState('99 999 9999');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const onShowHideModal = item => {
     if (setModalVisible(true)) {
@@ -51,12 +52,12 @@ export function AuthenticationScreen({navigation}) {
   };
 
   const onCountryChange = item => {
-    setCodeCountry(item.dialCode)
+    setCodeCountry(item.dialCode);
+    setplaceholder(item.mask);
     setModalVisible(false);
   };
 
   const closeModal = () => {
-
     setModalVisible(false);
   };
 
@@ -118,8 +119,10 @@ export function AuthenticationScreen({navigation}) {
 
   const onPressContinue = () => {
     //You need add if for phone when press continue
-    if (phoneNumber) {
+    if (phoneNumber.length === placeholder.replace(/ /g, '').length) {
       navigation.navigate('inputOtpScreen');
+    } else {
+      alert('fuck');
     }
   };
 
